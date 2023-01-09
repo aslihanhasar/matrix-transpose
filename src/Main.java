@@ -1,18 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    static void printMatrix(int[][] arr) {
-
-        for (int[] i : arr) {
-            for (int j : i) {
-                System.out.print(j + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-
+    static int[][] receiveMatrix() {
         Scanner scanner = new Scanner(System.in);
         int row, col;
 
@@ -28,18 +17,37 @@ public class Main {
                 arr[i][j] = scanner.nextInt();
             }
         }
-        System.out.println("Matrix: ");
-        printMatrix(arr);
+        return arr;
+    }
 
-        int[][] transpose = new int[col][row];
+    static void printMatrix(int[][] arr) {
+
+        for (int[] i : arr) {
+            for (int j : i) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    static int[][] transposeMatrix(int[][] arr) {
+        int[][] transpose = new int[arr[0].length][arr.length];
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 transpose[j][i] = arr[i][j];
             }
         }
+        return transpose;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = receiveMatrix();
+        System.out.println("Matrix: ");
+        printMatrix(matrix);
+
+        int[][] transpose = transposeMatrix(matrix);
         System.out.println("Transpose: ");
         printMatrix(transpose);
-
     }
 }
 
